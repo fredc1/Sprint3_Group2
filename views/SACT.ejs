@@ -1,0 +1,60 @@
+<html>
+	<head>
+		<title>Sleep Alcohol Caffeine Trackers</title>
+	</head>
+
+	<body>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	    
+	    <link rel="stylesheet" href="SACT.css"></script>
+
+
+		<div id="header2" class="try"><h1><%= data.title %></h1></div>
+
+		<DIV id = 'body'>
+		  <% data.questions.forEach(function(user){ %>
+			<ul>
+			  <div><label><%= user.question %></label></div>
+			  <% user.answers.forEach(function(a){ %>
+			  	<% if (a.type=='radio'){ %>
+			  		<div><input class='<%=user.id%>' type='<%= a.type %>' id="<%= a.id %>"><%= a.text %></input></div>
+			  	<% }  else if (a.type=='text'){ %>
+			  		<div><%= a.text %><input class='<%=user.id%>' type='<%= a.type %>' id="<%= a.id %>"></input></div>
+			  	<% } else if (a.type=='checkbox'){ %>
+			  		<div><input class='<%=user.id%>' type='<%= a.type %>' id="<%= a.id %>"><%= a.text %></input></div>
+
+			  		<% if(a.options.length>0){ %>
+			  		<% a.options.forEach(function(o){ %>
+			  			<div class="indent1">
+			  			<label class='<%= a.id %> hidden'><%= o.text %><input type='<%= o.type %>' id="<%= o.id %>" class='<%=a.id %> hidden'></label>
+			  			</div>
+			  			<% if(o.options.length>0){ %>
+			  			<% o.options.forEach(function(nextO){ %>
+			  				<div class="indent2">
+			  				<label class='<%= o.id %> hidden'><%= nextO.text %><input type='<%= nextO.type %>' id="<%= nextO.id %>" class='<%=o.id %> hidden'></label>
+			  				</div>
+
+			  			<% }) %>
+			  			<% } %>
+			  		<% })  %>
+			  		<% } %>
+			  	<% } %>
+
+			  <% }); %>
+			</ul>
+		  <% }); %>
+		  
+		</DIV>
+		<button id="submit">Submit</button>
+
+		<button id="results"><a href="/results">View Results</a></button>
+
+		<script src="SACT.js"></script>
+
+
+
+	</body>
+
+
+
+</html>

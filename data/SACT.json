@@ -1,0 +1,155 @@
+{
+"id": "SACT",
+	"title": "Sleep Alcohol Caffeine Trackers",
+	"desc": "Please answer these questions every day",
+	"questions":[
+		{
+		"id": "SACT_0",
+		"question": "How many hours did you sleep last night?",
+		"answers": [
+			{
+			"id": "SACT_0_0",
+			"type": "text",
+			"text": "Hours:"
+			}
+		]
+		},
+		{
+		"id": "SACT_1",
+		"question": "Did you consume any alcohol yesterday?",
+		"answers": [
+			{
+			"id": "SACT_1_0",
+			"type": "checkbox",
+			"text": "Yes",
+			"options": [
+				{
+				"id": "SACT_1_0_0",
+				"type": "checkbox",
+				"text": "Beer",
+				"options": [{
+					"id": "SACT_1_0_0_0",
+					"type": "text",
+					"text": "How much did you drink?"
+				}]
+				},
+				{
+				"id": "SACT_1_0_1",
+				"type": "checkbox",
+				"text": "Wine",
+				"options": [{
+					"id": "SACT_1_0_1_0",
+					"type": "text",
+					"text": "How much did you drink?"
+				}]
+				},
+				{
+				"id": "SACT_1_0_2",
+				"type": "checkbox",
+				"text": "Hard Liquor",
+				"options": [{
+					"id": "SACT_1_0_2_0",
+					"type": "text",
+					"text": "How much did you drink?"
+				}]
+				},
+				{
+				"id": "SACT_1_0_3",
+				"type": "text",
+				"text": "Other: ",
+				"options": [
+				]
+				}
+			]
+			},
+			{
+			"id": "SACT_1_1",
+			"type": "checkbox",
+			"text": "No",
+			"options": []
+			}
+		]
+		},
+		{
+		"id": "SACT_2",
+		"question": "Did you consume any caffeine yesterday?",
+		"answers": [
+			{
+			"id": "SACT_2_0",
+			"type": "checkbox",
+			"text": "Yes",
+			"options":[
+				{
+				"id": "SACT_2_0_0",
+				"type": "checkbox",
+				"text": "Coffee",
+				"options": [
+					{
+					"id": "SACT_2_0_0_0",
+					"type": "text",
+					"text": "How much did you drink?"
+					}
+				]
+				},
+				{
+				"id": "SACT_2_0_1",
+				"type": "checkbox",
+				"text": "Tea",
+				"options": [
+					{
+					"id": "SACT_2_0_1_0",
+					"type": "text",
+					"text": "How much did you drink?"
+					}
+				]
+				},
+				{
+				"id": "SACT_2_0_2",
+				"type": "checkbox",
+				"text": "Soda",
+				"options": [
+					{
+					"id": "SACT_2_0_2_0",
+					"type": "text",
+					"text": "How much did you drink?"
+					}
+				]
+				},
+				{
+				"id": "SACT_2_0_3",
+				"type": "checkbox",
+				"text": "Energy Drink",
+				"options": [
+					{
+					"id": "SACT_2_0_3_0",
+					"type": "text",
+					"text": "How much did you drink?"
+					}
+				]
+				},
+				{
+				"id": "SACT_2_0_4",
+				"type": "text",
+				"text": "Other: ",
+				"options": [
+					{
+					"id": "SACT_2_0_4_0",
+					"type": "text",
+					"text": "How much did you drink?"
+					}
+				]
+				}
+
+			]
+			},
+			{
+			"id": "SACT_2_1",
+			"type": "checkbox",
+			"text": "No",
+			"options": []
+			}
+		]
+
+		}
+	]
+}
