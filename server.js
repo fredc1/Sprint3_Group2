@@ -94,5 +94,35 @@ app.get('/faq.html', function(req, res){
 });
 
 
+
+app.get('/st.html', function(req, res){
+
+ // fs.readFile("views/answer_page.ejs", 'utf8', function (err, contents) {
+   // fs.readFile("views/answer_page.ejs", 'utf8', function (err, contents) {
+  fs.readFile("views/st.ejs", 'utf8', function (err, contents) {
+
+   if (err) {
+       // res.render("error.ejs", {data: {"type":"500"}});
+     }
+     else{
+        var json_data_string = fs.readFileSync("data/symptomtracker.json", 'utf8'); 
+        var json_data_object = JSON.parse(json_data_string);//need to know basis
+
+       // res.render("answer_page.ejs", {data: json_data_object});
+
+       res.render("st.ejs", {data: json_data_object});
+     }
+   });
+  
+});
+
+app.get('/summary', function(req,res){
+  var json_data_string = fs.readFileSync("data/symptomtracker.json", 'utf8'); 
+        var json_data_object = JSON.parse(json_data_string);//need to know basis
+
+        res.render("stresult.ejs", {data: json_data_object});
+});
+
+
 var port = process.env.PORT || 4000;
 app.listen(port);
