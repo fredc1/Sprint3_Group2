@@ -1,0 +1,83 @@
+<HTML>
+	<HEAD>
+		<TITLE>Recovery Activities</TITLE>
+		<link rel="stylesheet" type="text/css" href="css/mt_css.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+
+
+	</HEAD>
+	<BODY>
+		<div id="pageNumb" class="hidden"></div>
+		<DIV id = 'header'><H1><%=data.title%></H1></DIV>
+		<DIV id = 'desc'><H3><%=data.desc%></H3></DIV>
+
+			<% for(var i=0; i<data.questions.length; i++) {%>
+			<h2 id= <%= data.questions[i].id %>><%= data.questions[i].question %></h2>
+
+				<% for(var j=0; j<data.questions[i].answers.length; j++) {%>
+
+
+					<div class="indent1">
+						<% if(data.questions[i].answers[j].type=='radio') {%>
+							<div class="radio">
+								<label class="radio-inline"><input type="radio" id=<%= data.questions[i].answers[j].id%> name=<%= data.questions[i].id%>><%= data.questions[i].answers[j].text %></label>
+							</div>
+						<%}%>
+
+						</div>
+						<div class= <%=data.questions[i].answers[j].id%>>
+						<!-- <div class="test"> -->
+						<% for(var n=0; n<data.questions[i].answers[j].options.length; n++) {%>
+
+
+						<div class="indent2">
+							<%if(data.questions[i].answers[j].options[n].type=='date') {%>
+								<div class="form-group">
+			 						<label for="usr"><%= data.questions[i].answers[j].options[n].text %></label>
+			  						<input type="date" class="form-control" id=<%= data.questions[i].answers[j].options[n].id%>>
+								</div>
+
+
+							<%}else{%>
+								<h3><%= data.questions[i].answers[j].options[n].text %></h3>
+							<% } %>
+
+							</div>
+							<div class=<%=data.questions[i].answers[j].options[n].id%>>
+							<% for(var p=0; p<data.questions[i].answers[j].options[n].options.length; p++) {%>
+
+							<div class=<%=data.questions[i].answers[j].options[n].id%>>
+							<div class="indent3">
+								<%if(data.questions[i].answers[j].options[n].options[p].type=='radio') {%>
+									<label class="radio-inline"><input type="radio" id=<%= data.questions[i].answers[j].options[n].options[p].id%> name=<%= data.questions[i].answers[j].id%>><%= data.questions[i].answers[j].options[n].options[p].text %></label>
+
+								<%}else{%>
+									<h3><%= data.questions[i].answers[j].options[n].options[p].text %></h3>
+								<% } %>
+							</div>
+							</div>
+							<% } %>
+							</div>
+						<% } %>
+						</div>
+				<% } %>
+			<% } %>
+
+		</div>
+		<DIV id = 'footer'></DIV>
+
+
+
+		<h3><button id="submit">submit</button></h3>
+		<!-- <h3><a href=answers.html> Saved </a></h3> -->
+		<div id = fowardBack></div>
+
+		<script src="js/save.js"></script>
+							
+		</BODY>
+	</HTML>

@@ -1,0 +1,32 @@
+form {
+	display: inline;
+}
+
+body{
+	margin:40pxauto;
+	max-width:650px;
+	line-height:1;
+	font-size:18px;
+	color:#444;
+	padding:010px
+}
+h1,h2,h3{
+	line-height:1.2
+}
+
+.indent1 {
+    margin-left: 50px;
+}
+
+.indent2 {
+    margin-left: 100px;
+}
+
+
+.indent3 {
+    margin-left: 150px;
+}
+
+.hidden{
+  display:none;  
+}
