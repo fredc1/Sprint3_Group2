@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	document.getElementById("clear").addEventListener("click", clearLocal);
 	document.getElementById("summary").addEventListener("click", createSummary);
 	document.getElementById("activateRTP").addEventListener("click", activateRTP);
+	document.getElementById("testRTP").addEventListener("click", testRTP);
 	document.getElementById("returnToPlay").addEventListener("click", function () { window.location.href = 'returnToPlayForServer.html';
 });
 });
@@ -105,6 +106,28 @@ var activateRTP = function() {
 	localStorage.setItem("step", "1000");
 	var jsonSym = JSON.parse(localStorage.getItem("symptoms"));
 	localStorage.setItem("form", jsonSym.form.length-1);
+}
+
+var iterator = 1;
+
+$("#clear").hide();
+$("#message").hide();
+if(localStorage.getItem("test") == "true"){
+	$("#message").show();
+}
+
+var testRTP = function() {
+	iterator++;
+	if((iterator % 2) === 0){
+		$("#clear").show();
+		$("#message").show();
+		localStorage.setItem("test", "true");
+	}
+	else{
+		$("#clear").hide();
+		$("#message").hide();
+		localStorage.setItem("test", "false");
+	}
 }
 
 var createSummary = function() {
