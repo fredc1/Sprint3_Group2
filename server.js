@@ -152,5 +152,30 @@ app.get('/results', function(req, res){
 });
 
 
+app.get('/full.html', function(req, res){
+   
+  fs.readFile("views/full.ejs", 'utf8', function (err, contents) {
+
+     if (err) {
+        
+     }
+     else{
+        var json_data_string = fs.readFileSync("data/full.json", 'utf8'); 
+        var json_data_object = JSON.parse(json_data_string);//need to know basis
+
+        res.render("full.ejs", {data: json_data_object});
+     }
+  });
+  
+}); // respond to requests for the default route
+
+app.get('/summary2', function(req,res){
+  var json_data_string = fs.readFileSync("data/full.json", 'utf8'); 
+        var json_data_object = JSON.parse(json_data_string);//need to know basis
+
+        res.render("summary2.ejs", {data: json_data_object});
+});
+
+
 var port = process.env.PORT || 4000;
 app.listen(port);

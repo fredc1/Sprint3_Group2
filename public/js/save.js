@@ -105,7 +105,8 @@ var myClasss = "MT_0_0";
 		}
 	}
 
-$( "#fowardBack" ).append("<h3><button id='foward'>Next Day</button></h3>");
+$( "#fowardBack" ).append("<button type='button' id='foward' class='btn btn-secondary'>Next Day</button> <br><br>");
+
 
 $('#foward').click(
 	function(){
@@ -159,7 +160,7 @@ $('#foward').click(
 	}
 );
 
-$( "#fowardBack" ).append("<h3><button id='backward'>Previous Day</button></h3>");
+$( "#fowardBack" ).append("<button type='button' id='backward' class='btn btn-secondary'>Previous Day</button>");
 
 $('#backward').click(
 	function(){
@@ -227,6 +228,18 @@ $('input[type=radio]').change(
 
         }else{
         	//$(this).removeClass('hidden');
+        	var myClass = $(this).attr('id');
+			$( "."+myClass ).addClass('hidden');
+        }
+
+
+        var theName = $(this).attr('name');
+        if($('[name=theName]').checked){
+
+        	var myClass = $(this).attr('id');
+			$( "."+myClass ).removeClass('hidden');
+        }else{
+        	console.log("checked");
         	var myClass = $(this).attr('id');
 			$( "."+myClass ).addClass('hidden');
         }

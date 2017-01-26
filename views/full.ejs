@@ -1,0 +1,165 @@
+<HTML>
+	<HEAD>
+		<TITLE><%= data.title%></TITLE>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<style type="text/css">body{margin:40px
+auto;max-width:800px;line-height:1.6;font-size:18px;color:#444;padding:0
+10px}h1,h2,h3{line-height:1.2}p{    display: block;
+    font-size: 1.5em;
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}</style>
+	</HEAD>
+	<BODY>
+		<DIV id = 'body'>
+		<%for(k=0;k<5;k++){%>
+		<DIV id = 'header'><H1><%=data.sections[k].title%>:<br><%=data.sections[k].desc%></H1></DIV>
+		<%if(data.sections[k].title!="Symptoms"){%>
+		  <% data.sections[k].questions.forEach(function(question){%>
+
+
+
+		    <h2 id=<%=question.id%>><%= question.question %></h2>
+		    <% question.answers.forEach(function(answer){ %>
+		    
+			 <ul class ='answer'>
+		   
+
+		    <%if(answer.type=='radio'){%>
+			<input type="<%= answer.type %>" name="<%= question.id %>" id="<%= answer.id %>"><%= answer.text %><br> 
+			<%if(typeof answer["options"]!='undefined'){%>
+					<% for(i=0;i<answer.options.length;i++){ %>
+					<ul class ="option">  	
+
+						<%if(answer.options[i].type=="text"){%>
+				
+			  				<%= answer.options[i].text %> <input type="<%= answer.options[i].type %>" name="<%= answer.id %>" id="<%= answer.options[i].id %>">
+			 		<%}%>
+			 		<%if(answer.options[i].type=="dropdown"){%>
+						<%=answer.options[i].text%><form action="action_page.php">
+  						<select id="<%=answer.options[i].id%>">
+  						<%for(a=0;a<answer.options[i].options.length;a++){%>
+   							<option value="<%=answer.options[i].options[a].text%>"><%=answer.options[i].options[a].text%></option>
+    						<%}%>
+  						</select>
+  						<br><br>
+					</form>
+
+			  				
+			 		<%}%>
+			 		<%if(answer.options[i].type=="question"){%>
+						<%=answer.options[i].text%><br> 
+						<input type="<%= answer.options[i].options[0].type %>" name="<%= answer.options[i].id%>" id="<%= answer.options[i].options[0].id %>"><%=answer.options[i].options[0].text%>
+
+						<%if(false){%>
+							<% for(b=0;b<answer.options[0].options[0].options.length;b++){ %>
+							<ul class="option">  	
+
+								
+									<form action="action_page.php">
+  										<select id="fuck u">
+  										<%if(answer.options[i].options[0].options){%>
+  										<%for(c=0;c<answer.options[i].options.length;c++){%>
+   											<option value="<%=answer.options[i].options[0].options[0].options[c].text%>"><%=answer.options[i].options[0].options[0].options[c]%></option>
+    									<%}%>
+    									<%}%>
+  										</select>
+  										<br><br>
+										</form>		
+					</ul>
+		     			<% } %>
+
+						<%}%>
+						<input type="<%= answer.options[i].options[1].type %>" name="<%= answer.options[i].id%>" id="<%= answer.options[i].options[1].id %>"><%=answer.options[i].options[1].text%>
+			 		<%}%>
+
+					</ul>
+
+				 
+		     <% } %>
+		     <%}%>
+			<%}%>
+
+			<%if(answer.type!='radio'){%>
+
+			<%if(answer.type=="text"){%><%= answer.text %> <input type="<%= answer.type %>" id="<%= answer.id %>"> <%}%>
+			<%if(answer.type!="text"){%>
+			<input type="<%= answer.type %>" id="<%= answer.id %>"><%= answer.text %>
+			<%}%>
+			<%if(typeof answer.options!="undefined"){%>
+			<% for(i=0;i<answer.options.length;i++){ %>
+			<% if(answer.options[i].type=='checkbox'){ %>
+		  		<ul class="option">
+		  		
+			  		<input type="<%= answer.options[i].type %>" name="<%= answer.id %>" id="<%= answer.options[i].id %>"><%= answer.options[i].text %>
+			  		<%if(typeof answer["options"][i].options[0]!='undefined'){%>
+			  		
+			  		
+			  		<input type ='<%=answer.options[i].options[0].type%>' id='<%=answer.options[i].options[0].id%>'>
+			  		
+			  		<%}%>
+			  	
+			  	
+		
+			 </ul>
+			 <% } %>
+			<% if(answer.options[i].type=='text'){ %>
+			  		<input type="text"  id="<%= answer.options[i].id %>">
+			  		<%}%>
+				
+			
+		     <% } %>
+		     <%}%>
+			<%}%>
+			</ul>
+			<% }); %>
+
+			
+		  <% }); %>
+
+
+		  	<%}%>
+		  	<%if(data.sections[k].title=="Symptoms"){%>
+		 <table>
+		  <tr>
+		  	<td>Symptom Name</td>
+		  	<td>Pre-Injury</td>
+		  	<td>Post-Injury</td>
+		  </tr>
+		  <% for(i=0; i<data.sections[k].questions.length; i++){ %>
+		  <tr>
+		    <td id="<%= data.sections[k].questions[i].id %>"><%= data.sections[k].questions[i].question %></td>
+		   	<% for( j=0; j<data.sections[k].questions[i].answers.length; j++){ %>
+			  <td>
+			  <% if(data.sections[k].questions[i].answers[j].type == 'text') {%>
+			  <%= data.sections[k].questions[i].answers[j].text %>
+			  <% }; %>
+			   <% if(data.sections[k].questions[i].answers[j].type == 'slider') {%>
+ 				<input type="range" id="<%= data.sections[k].questions[i].answers[j].id%>" max="<%= data.sections[k].questions[i].answers[j].max%>" min="<%= data.sections[k].questions[i].answers[j].min%>" step="<%= data.sections[k].questions[i].answers[j].step%>" value="0">
+ 				<label id="<%= data.sections[k].questions[i].answers[j].id%>v">
+			   <% } else{ %>
+			  <input type="<%= data.sections[k].questions[i].answers[j].type %>" id="<%= data.sections[k].questions[i].answers[j].id %>">
+			  <% }; %>
+			  </td>
+		  <% }}; %>
+		 </tr>
+		 </table>
+
+		  	<%}%>
+
+		 <%}%>
+		  <br>
+		  <ul>
+			<button id="clear">Clear Local Storage</button>
+			<button id="summary">View Saved Answers</button>
+
+
+		  </ul>
+		</DIV>
+		<DIV id = 'footer'></DIV>
+		<script src="/js/scripts.js"></script>
+	</BODY>
+</HTML>
